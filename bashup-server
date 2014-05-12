@@ -2,6 +2,8 @@
 
 source /etc/bashup-settings
 
+mkdir -p /mnt/backup
+
 # Clean up crew
 find /mnt/backup -type f -mtime +7 -exec rm {} \;
 
