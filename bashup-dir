@@ -8,7 +8,7 @@ mkdir -p /mnt/backup
 find /mnt/backup -type f -mtime +7 -exec rm {} \;
 
 for file in ${FILES} ; do
-    base=$(basename dir)
+    base=$(basename $DIR)
     mkdir -p /mnt/backup/$base
     echo "Backing up ${DIR}/${file} to /mnt/backup/$DIR/$file-$TIME.tar.bz2"
     tar -jcf /mnt/backup/$base/$file-$TIME.tar.bz2  ${DIR}/${file}
