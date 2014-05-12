@@ -8,8 +8,8 @@ mkdir -p /mnt/backup
 find /mnt/backup -type f -mtime +7 -exec rm {} \;
 
 # Backup up dbs.
-bashup-dbs
+$BASHUP_PATH/bashup-dbs
 
 for dir in $BACKUP_DIRS; do
-    bashup-dir $dir
+    $BASHUP_PATH/bashup-dir $dir
 done
