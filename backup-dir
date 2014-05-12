@@ -1,0 +1,14 @@
+#! /bin/bash
+DIR=${1%/}
+FILES=$(ls $1)
+TIME=$(date +%Y-%m-%d-%H-%M)
+mkdir -p /mnt/backup
+
+# Clean up crew
+find /mnt/backup -type f -mtime +7 -exec rm {} \; 
+
+for file in ${FILES} ; do
+    mkdir -p /mnt/backup/$DIR
+    echo "Backing up ${DIR}/${file} to /mnt/backup/$DIR/$file-$TIME.tar.bz2"
+    tar -jcf /mnt/backup/$DIR/$file-$TIME.tar.bz2  ${DIR}/${file}
+done

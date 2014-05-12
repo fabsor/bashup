@@ -1,0 +1,14 @@
+#! /bin/bash
+
+source /opt/backup-settings
+
+# Clean up crew
+find /mnt/backup -type f -mtime +7 -exec rm {} \; 
+
+# Backup up dbs.
+/opt/backup-dbs
+
+for dir in $BACKUP_DIRS; do
+    /opt/backup-dir $dir
+done
+

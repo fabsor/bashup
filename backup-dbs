@@ -1,0 +1,10 @@
+# !/bin/bash
+mkdir -p /mnt/backup/mysql
+DATABASES=$(mysql -u root -s --skip-column-names -e "show databases")
+TIME=$(date +%Y-%m-%d-%H-%M)
+for db in ${DATABASES}; do
+    if [ "${db}" != "information_schema" -a "${db}" != "performance_schema" ]; then
+	mysqldump -u root $db > /mnt/backup/mysql/${db}-$TIME.sql && bzip2 -z /mnt/backup/mysql/${db}-$TIME.sql
+    fi
+done
+
