@@ -9,7 +9,9 @@ find /mnt/backup -type f -mtime +7 -exec rm {} \;
 
 # Backup up dbs.
 $BASHUP_PATH/bashup-dbs
-
+if [ -x /usr/bin/mongodump ]; then
+    $BASHUP_PATH/bashup-mongo
+fi
 for dir in $BACKUP_DIRS; do
     $BASHUP_PATH/bashup-dir $dir
 done

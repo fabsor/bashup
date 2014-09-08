@@ -1,0 +1,6 @@
+#!/bin/bash
+TIME=$(date +%Y-%m-%d-%H-%M)
+mkdir -p /mnt/backup/mongodb/db-$TIME
+pushd /mnt/backup/mongodb/db-$TIME
+mongodump
+popd
